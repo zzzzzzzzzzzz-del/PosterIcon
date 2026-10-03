@@ -125,6 +125,10 @@
   .info h3 { margin: 0 0 10px; color: #f5f5f7; font-size: 16px; }
   .info ol { margin: 8px 0 0 20px; padding: 0; }
   .info li { margin-bottom: 6px; }
+  .info code {
+    background: #23232a; padding: 2px 6px; border-radius: 6px;
+    font-size: 12px; font-family: ui-monospace, monospace;
+  }
 
   footer {
     text-align: center; padding: 30px 20px;
@@ -143,12 +147,8 @@
     <a class="btn primary" id="applyBtn" href="#">▶️ Применить тему</a>
   </div>
 
-  <div class="btn-row" style="margin-top:10px">
-    <a class="btn" id="installShortcutBtn" href="#">📥 Установить шорткат</a>
-  </div>
-
   <p class="hint">
-    Сначала установи шорткат <b>ApplyTheme</b>, потом жми «Применить тему»
+    Нажми — откроется «Команды» и запустится шорткат <b>ApplyTheme</b>
   </p>
 </header>
 
@@ -159,28 +159,27 @@
   <div class="info">
     <h3>Как это работает</h3>
     <ol>
-      <li>Нажми <b>«📥 Установить шорткат»</b> — откроется приложение «Команды».</li>
-      <li>Сохрани шорткат <b>ApplyTheme</b> (кнопка «Добавить шорткат» внизу).</li>
-      <li>Вернись на сайт и нажми <b>«▶️ Применить тему»</b>.</li>
-      <li>Для каждой иконки в шорткате выбери «Добавить на экран "Домой"».</li>
+      <li>Шорткат <b>ApplyTheme</b> уже создан в «Командах» (вручную).</li>
+      <li>Нажми «▶️ Применить тему» на этой странице.</li>
+      <li>Откроются «Команды» → шорткат скачает <code>theme.json</code> с сайта.</li>
+      <li>Для каждой иконки выбери «Добавить на экран "Домой"».</li>
     </ol>
     <p style="margin-top:12px;font-size:13px;color:#8a8a92">
       ⚠️ iOS не даёт автоматически создавать ярлыки — только вручную.
-      Зато никакого JSON и никакого сервера не нужно: все данные вшиты в эту страницу.
+      Зато файл <code>theme.json</code> можно править отдельно, не трогая HTML.
     </p>
   </div>
 
   <div class="info">
-    <h3>🛠️ Если шорткат не устанавливается</h3>
+    <h3>🛠️ Шорткат ApplyTheme</h3>
     <ol>
       <li>Открой «Команды» → <b>+</b> → назови <b>ApplyTheme</b>.</li>
-      <li>В настройках шортката (ⓘ) включи <b>«Принимать URL»</b> и <b>«Принимать текст»</b>.</li>
-      <li>Добавь действие <b>«Получить текст»</b> → вход: <b>Краткий ввод</b>.</li>
-      <li>Добавь действие <b>«Получить словарь из входных данных»</b>.</li>
-      <li>Добавь действие <b>«Получить значение по ключу»</b> → ключ: <code>icons</code>.</li>
-      <li>Добавь действие <b>«Повторить для каждого»</b>.</li>
-      <li>Внутри цикла — <b>«Открыть приложение»</b> → выбери любое (Safari).</li>
-      <li>Вернись к параметру приложения и замени на <b>Переменную → Элемент повтора → app</b>.</li>
+      <li>В настройках (ⓘ) включи <b>«Принимать URL»</b> и <b>«Принимать текст»</b>.</li>
+      <li><b>Получить содержимое URL</b> → URL: <b>Краткий ввод</b>, метод: <b>GET</b>.</li>
+      <li><b>Получить словарь из входных данных</b> → вход: результат шага 3.</li>
+      <li><b>Получить значение по ключу</b> → вход: словарь, ключ: <code>icons</code>.</li>
+      <li><b>Повторить для каждого</b> → вход: результат шага 5.</li>
+      <li>Внутри цикла: <b>Открыть приложение</b> → Приложение: <b>Переменная</b> → <b>Элемент повтора</b> → <code>app</code>.</li>
     </ol>
   </div>
 </main>
@@ -189,22 +188,21 @@
 
 <script>
 /* ============================================================
-   ВСЁ В КОРНЕ, БЕЗ JSON, БЕЗ СЕРВЕРА
+   САЙТ ПЕРЕДАЁТ ССЫЛКУ НА theme.json
    ============================================================ */
 
 const WALLPAPER = "wall.png";
 const SHORTCUT_NAME = "ApplyTheme";
-const SHORTCUT_FILE = "ApplyTheme.shortcut";
+const THEME_JSON_FILE = "theme.json";
 const SITE_BASE = location.origin + location.pathname.replace(/[^/]*$/, '');
 
 function abs(p) { return new URL(p, SITE_BASE).href; }
 
 const THEME = {
   name: "Solar26 · Full Theme",
-  description: "Все 49 приложений iOS в одном наборе",
+  description: "Все приложения iOS в одном наборе",
   accent: "#FF3B30",
   icons: [
-    // --- Part 1: Essential ---
     { app: "com.apple.mobilephone",      icon: "com.apple.mobilephone-large.png",      name: "Телефон" },
     { app: "com.apple.MobileSMS",        icon: "com.apple.MobileSMS-large.png",        name: "Сообщения" },
     { app: "com.apple.mobilesafari",     icon: "com.apple.mobilesafari-large.png",     name: "Safari" },
@@ -233,8 +231,6 @@ const THEME = {
     { app: "com.apple.Translate",        icon: "com.apple.Translate-large.png",        name: "Перевод" },
     { app: "com.apple.tv",               icon: "com.apple.tv-large.png",               name: "TV" },
     { app: "com.apple.podcasts",         icon: "com.apple.podcasts-large.png",         name: "Подкасты" },
-
-    // --- Part 2: Additional ---
     { app: "com.apple.iBooks",          icon: "com.apple.iBooks-large.png",          name: "Книги" },
     { app: "com.apple.freeform",        icon: "com.apple.freeform-large.png",        name: "Freeform" },
     { app: "com.apple.mobilegarageband","icon": "com.apple.mobilegarageband-large.png","name": "GarageBand" },
@@ -259,34 +255,12 @@ const THEME = {
   ]
 };
 
-/* ===== JSON для шортката ===== */
-function buildThemeJson() {
-  return {
-    name: THEME.name,
-    description: THEME.description,
-    accent: THEME.accent,
-    wallpaper: abs(WALLPAPER),
-    icons: THEME.icons.map(ic => ({
-      app: ic.app,
-      icon: abs(ic.icon),
-      name: ic.name
-    }))
-  };
-}
-
-/* ===== Ссылка «Применить тему» ===== */
+/* ===== Ссылка «Применить тему» — передаёт URL на theme.json ===== */
 function applyUrl() {
-  const json = JSON.stringify(buildThemeJson());
+  const jsonUrl = abs(THEME_JSON_FILE);
   return 'shortcuts://run-shortcut?name=' +
          encodeURIComponent(SHORTCUT_NAME) +
-         '&input=' + encodeURIComponent(json);
-}
-
-/* ===== Ссылка «Установить шорткат» ===== */
-function installShortcutUrl() {
-  return 'shortcuts://import-shortcut?url=' +
-         encodeURIComponent(abs(SHORTCUT_FILE)) +
-         '&name=' + encodeURIComponent(SHORTCUT_NAME);
+         '&input=' + encodeURIComponent(jsonUrl);
 }
 
 /* ===== Рендер иконок ===== */
@@ -324,20 +298,8 @@ function renderWallpaper() {
   `;
 }
 
-/* ===== Настройка кнопки «Установить шорткат» ===== */
-function setupInstallShortcut() {
-  const btn = document.getElementById('installShortcutBtn');
-  btn.href = installShortcutUrl();
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    location.href = installShortcutUrl();
-  });
-}
-
-/* ===== Старт ===== */
 render();
 renderWallpaper();
-setupInstallShortcut();
 </script>
 
 </body>

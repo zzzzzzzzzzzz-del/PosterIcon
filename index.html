@@ -66,6 +66,12 @@
     display: flex; gap: 10px; flex-wrap: wrap;
     justify-content: center; margin-top: 12px;
   }
+  .hint {
+    margin: 14px 0 0;
+    font-size: 12px;
+    color: #8a8a92;
+    line-height: 1.5;
+  }
 
   main { max-width: 1100px; margin: 0 auto; padding: 24px 20px 0; }
 
@@ -132,9 +138,18 @@
   <div class="logo"><span>S</span></div>
   <h1>Solar26</h1>
   <p>49 иконок и обои для iOS 18+</p>
+
   <div class="btn-row">
     <a class="btn primary" id="applyBtn" href="#">▶️ Применить тему</a>
   </div>
+
+  <div class="btn-row" style="margin-top:10px">
+    <a class="btn" id="installShortcutBtn" href="#">📥 Установить шорткат</a>
+  </div>
+
+  <p class="hint">
+    Сначала установи шорткат <b>ApplyTheme</b>, потом жми «Применить тему»
+  </p>
 </header>
 
 <main>
@@ -144,9 +159,9 @@
   <div class="info">
     <h3>Как это работает</h3>
     <ol>
-      <li>Установи один раз универсальный шорткат <b>ApplyTheme</b> (инструкция ниже).</li>
-      <li>Открой эту страницу на iPhone в Safari.</li>
-      <li>Нажми «Применить тему» — откроется «Команды» с готовым сценарием.</li>
+      <li>Нажми <b>«📥 Установить шорткат»</b> — откроется приложение «Команды».</li>
+      <li>Сохрани шорткат <b>ApplyTheme</b> (кнопка «Добавить шорткат» внизу).</li>
+      <li>Вернись на сайт и нажми <b>«▶️ Применить тему»</b>.</li>
       <li>Для каждой иконки в шорткате выбери «Добавить на экран "Домой"».</li>
     </ol>
     <p style="margin-top:12px;font-size:13px;color:#8a8a92">
@@ -156,7 +171,7 @@
   </div>
 
   <div class="info">
-    <h3>🛠️ Создай шорткат ApplyTheme (один раз)</h3>
+    <h3>🛠️ Если шорткат не устанавливается</h3>
     <ol>
       <li>Открой «Команды» → <b>+</b> → назови <b>ApplyTheme</b>.</li>
       <li>В настройках шортката (ⓘ) включи <b>«Принимать URL»</b> и <b>«Принимать текст»</b>.</li>
@@ -174,10 +189,12 @@
 
 <script>
 /* ============================================================
-   ВСЁ В КОРНЕ — БЕЗ ПАПКИ icon
+   ВСЁ В КОРНЕ, БЕЗ JSON, БЕЗ СЕРВЕРА
    ============================================================ */
 
 const WALLPAPER = "wall.png";
+const SHORTCUT_NAME = "ApplyTheme";
+const SHORTCUT_FILE = "ApplyTheme.shortcut";
 const SITE_BASE = location.origin + location.pathname.replace(/[^/]*$/, '');
 
 function abs(p) { return new URL(p, SITE_BASE).href; }
@@ -242,6 +259,7 @@ const THEME = {
   ]
 };
 
+/* ===== JSON для шортката ===== */
 function buildThemeJson() {
   return {
     name: THEME.name,
@@ -256,11 +274,22 @@ function buildThemeJson() {
   };
 }
 
+/* ===== Ссылка «Применить тему» ===== */
 function applyUrl() {
   const json = JSON.stringify(buildThemeJson());
-  return 'shortcuts://run-shortcut?name=ApplyTheme&input=' + encodeURIComponent(json);
+  return 'shortcuts://run-shortcut?name=' +
+         encodeURIComponent(SHORTCUT_NAME) +
+         '&input=' + encodeURIComponent(json);
 }
 
+/* ===== Ссылка «Установить шорткат» ===== */
+function installShortcutUrl() {
+  return 'shortcuts://import-shortcut?url=' +
+         encodeURIComponent(abs(SHORTCUT_FILE)) +
+         '&name=' + encodeURIComponent(SHORTCUT_NAME);
+}
+
+/* ===== Рендер иконок ===== */
 function render() {
   document.getElementById('applyBtn').href = applyUrl();
 
@@ -279,6 +308,7 @@ function render() {
   `;
 }
 
+/* ===== Рендер обоев ===== */
 function renderWallpaper() {
   document.getElementById('wallpaperBox').innerHTML = `
     <div class="wallpaper-box">
@@ -294,8 +324,20 @@ function renderWallpaper() {
   `;
 }
 
+/* ===== Настройка кнопки «Установить шорткат» ===== */
+function setupInstallShortcut() {
+  const btn = document.getElementById('installShortcutBtn');
+  btn.href = installShortcutUrl();
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    location.href = installShortcutUrl();
+  });
+}
+
+/* ===== Старт ===== */
 render();
 renderWallpaper();
+setupInstallShortcut();
 </script>
 
 </body>

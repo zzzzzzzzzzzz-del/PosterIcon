@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0d0d10" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Solar26" />
+<title>Solar26 · iOS Theme</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23FF3B30'/><text x='50' y='70' font-size='62' font-family='-apple-system' font-weight='700' fill='white' text-anchor='middle'>S</text></svg>" />
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, sans-serif;
+    background: #0d0d10; color: #f5f5f7;
+    min-height: 100vh; padding-bottom: 80px;
+  }
+  header {
+    padding: 44px 24px 24px; text-align: center;
+    border-bottom: 1px solid #1f1f24; position: relative;
+  }
+  header::before {
+    content: ""; position: absolute; top: -90px; left: 50%;
+    width: 340px; height: 340px;
+    background: radial-gradient(circle, rgba(255,59,48,.35), transparent 70%);
+    transform: translateX(-50%); z-index: -1; filter: blur(40px);
+  }
+
+  .logo {
+    width: 88px; height: 88px;
+    margin: 0 auto 16px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #FF3B30 0%, #FF9500 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 44px; font-weight: 700; color: #fff;
+    box-shadow: 0 12px 40px rgba(255,59,48,.35), 0 4px 12px rgba(0,0,0,.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .logo::after {
+    content: ""; position: absolute;
+    top: 0; left: 0; right: 0; height: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,.25), transparent);
+    border-radius: 24px 24px 0 0;
+  }
+  .logo span { position: relative; z-index: 1; }
+
+  header h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: -.5px; }
+  header p { margin: 0 0 24px; color: #9a9aa2; font-size: 15px; }
+
+  .btn {
+    display: inline-block; padding: 12px 20px; border-radius: 12px;
+    border: 1px solid #2c2c34; background: #1b1b21; color: #f5f5f7;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    cursor: pointer; font-family: inherit;
+  }
+  .btn.primary {
+    background: #FF3B30;
+    border-color: #FF3B30;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(255,59,48,.3);
+  }
+  .btn.primary:active { background: #d92d24; }
+  .btn-row {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    justify-content: center; margin-top: 12px;
+  }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 20px 0; }
+
+  .wallpaper-box {
+    background: #14141a; border: 1px solid #23232a;
+    border-radius: 20px; padding: 16px;
+    margin-bottom: 24px;
+    display: flex; gap: 16px; align-items: center;
+    flex-wrap: wrap;
+  }
+  .wallpaper-preview {
+    flex: 0 0 auto;
+    width: 120px; height: 220px;
+    border-radius: 14px; overflow: hidden;
+    background: #0d0d10; border: 1px solid #23232a;
+  }
+  .wallpaper-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .wallpaper-info { flex: 1 1 200px; min-width: 180px; }
+  .wallpaper-info h3 { margin: 0 0 6px; font-size: 16px; color: #f5f5f7; }
+  .wallpaper-info p { margin: 0; font-size: 13px; color: #8a8a92; line-height: 1.5; }
+
+  .theme-title { text-align: center; margin: 8px 0 4px; font-size: 18px; }
+  .theme-desc { text-align: center; color: #8a8a92; font-size: 13px; margin: 0 0 20px; }
+
+  .icons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: 14px; margin: 16px 0 8px;
+  }
+  .cell {
+    background: #17171b; border: 1px solid #23232a;
+    border-radius: 18px; padding: 14px 8px 10px;
+    text-align: center; font-size: 12px; color: #c8c8cf;
+  }
+  .cell img {
+    width: 68px; height: 68px; border-radius: 18px;
+    display: block; margin: 0 auto 8px; object-fit: cover;
+    background: #0d0d10;
+  }
+  .cell .nm {
+    white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; padding: 0 4px;
+  }
+
+  .info {
+    background: #14141a; border: 1px solid #23232a;
+    border-radius: 16px; padding: 18px 20px;
+    color: #b9b9c0; font-size: 14px; line-height: 1.6;
+    margin-top: 24px;
+  }
+  .info h3 { margin: 0 0 10px; color: #f5f5f7; font-size: 16px; }
+  .info ol { margin: 8px 0 0 20px; padding: 0; }
+  .info li { margin-bottom: 6px; }
+
+  footer {
+    text-align: center; padding: 30px 20px;
+    color: #5c5c66; font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span>S</span></div>
+  <h1>Solar26</h1>
+  <p>49 иконок и обои для iOS 18+</p>
+  <div class="btn-row">
+    <a class="btn primary" id="applyBtn" href="#">▶️ Применить тему</a>
+  </div>
+</header>
+
+<main>
+  <div id="wallpaperBox"></div>
+  <div id="content"></div>
+
+  <div class="info">
+    <h3>Как это работает</h3>
+    <ol>
+      <li>Установи один раз универсальный шорткат <b>ApplyTheme</b> (инструкция ниже).</li>
+      <li>Открой эту страницу на iPhone в Safari.</li>
+      <li>Нажми «Применить тему» — откроется «Команды» с готовым сценарием.</li>
+      <li>Для каждой иконки в шорткате выбери «Добавить на экран "Домой"».</li>
+    </ol>
+    <p style="margin-top:12px;font-size:13px;color:#8a8a92">
+      ⚠️ iOS не даёт автоматически создавать ярлыки — только вручную.
+      Зато никакого JSON и никакого сервера не нужно: все данные вшиты в эту страницу.
+    </p>
+  </div>
+
+  <div class="info">
+    <h3>🛠️ Создай шорткат ApplyTheme (один раз)</h3>
+    <ol>
+      <li>Открой «Команды» → <b>+</b> → назови <b>ApplyTheme</b>.</li>
+      <li>В настройках шортката (ⓘ) включи <b>«Принимать URL»</b> и <b>«Принимать текст»</b>.</li>
+      <li>Добавь действие <b>«Получить текст»</b> → вход: <b>Краткий ввод</b>.</li>
+      <li>Добавь действие <b>«Получить словарь из входных данных»</b>.</li>
+      <li>Добавь действие <b>«Получить значение по ключу»</b> → ключ: <code>icons</code>.</li>
+      <li>Добавь действие <b>«Повторить для каждого»</b>.</li>
+      <li>Внутри цикла — <b>«Открыть приложение»</b> → выбери любое (Safari).</li>
+      <li>Вернись к параметру приложения и замени на <b>Переменную → Элемент повтора → app</b>.</li>
+    </ol>
+  </div>
+</main>
+
+<footer>Solar26 · zzzzzzzzzzzz-del · MIT</footer>
+
+<script>
+/* ============================================================
+   ЕДИНАЯ ТЕМА — 49 ИКОНОК, ВСЁ В ОДНОМ ФАЙЛЕ
+   ============================================================ */
+
+const WALLPAPER = "wall/wall.png";
+const SITE_BASE = location.origin + location.pathname.replace(/[^/]*$/, '');
+
+function abs(p) { return new URL(p, SITE_BASE).href; }
+
+const THEME = {
+  name: "Solar26 · Full Theme",
+  description: "Все 49 приложений iOS в одном наборе",
+  accent: "#FF3B30",
+  icons: [
+    // --- Part 1: Essential ---
+    { app: "com.apple.mobilephone",      icon: "icon/com.apple.mobilephone-large.png",      name: "Телефон" },
+    { app: "com.apple.MobileSMS",        icon: "icon/com.apple.MobileSMS-large.png",        name: "Сообщения" },
+    { app: "com.apple.mobilesafari",     icon: "icon/com.apple.mobilesafari-large.png",     name: "Safari" },
+    { app: "com.apple.mobilemail",       icon: "icon/com.apple.mobilemail-large.png",       name: "Почта" },
+    { app: "com.apple.camera",           icon: "icon/com.apple.camera-large.png",           name: "Камера" },
+    { app: "com.apple.mobileslideshow",  icon: "icon/com.apple.mobileslideshow-large.png",  name: "Фото" },
+    { app: "com.apple.Music",            icon: "icon/com.apple.Music-large.png",            name: "Музыка" },
+    { app: "com.apple.mobiletimer",      icon: "icon/clock.png",                            name: "Часы" },
+    { app: "com.apple.mobilecal",        icon: "icon/com.apple.mobilecal-large.png",        name: "Календарь" },
+    { app: "com.apple.weather",          icon: "icon/com.apple.weather-large.png",          name: "Погода" },
+    { app: "com.apple.Maps",             icon: "icon/com.apple.Maps-large.png",             name: "Карты" },
+    { app: "com.apple.mobilenotes",      icon: "icon/com.apple.mobilenotes-large.png",      name: "Заметки" },
+    { app: "com.apple.reminders",        icon: "icon/com.apple.reminders-large.png",        name: "Напоминания" },
+    { app: "com.apple.Preferences",      icon: "icon/com.apple.Preferences-large.png",      name: "Настройки" },
+    { app: "com.apple.AppStore",         icon: "icon/com.apple.AppStore-large.png",         name: "App Store" },
+    { app: "com.apple.Passbook",         icon: "icon/com.apple.Passbook-large.png",         name: "Кошелёк" },
+    { app: "com.apple.Health",           icon: "icon/com.apple.Health-large.png",           name: "Здоровье" },
+    { app: "com.apple.Fitness",          icon: "icon/com.apple.Fitness-large.png",          name: "Фитнес" },
+    { app: "com.apple.DocumentsApp",     icon: "icon/com.apple.DocumentsApp-large.png",     name: "Файлы" },
+    { app: "com.apple.calculator",       icon: "icon/com.apple.calculator-large.png",       name: "Калькулятор" },
+    { app: "com.apple.compass",          icon: "icon/com.apple.compass-large.png",          name: "Компас" },
+    { app: "com.apple.MobileAddressBook","icon": "icon/com.apple.MobileAddressBook-large.png","name": "Контакты" },
+    { app: "com.apple.facetime",         icon: "icon/com.apple.facetime-large.png",         name: "FaceTime" },
+    { app: "com.apple.findmy",           icon: "icon/com.apple.findmy-large.png",           name: "Локатор" },
+    { app: "com.apple.shortcuts",        icon: "icon/com.apple.shortcuts-large.png",        name: "Команды" },
+    { app: "com.apple.Translate",        icon: "icon/com.apple.Translate-large.png",        name: "Перевод" },
+    { app: "com.apple.tv",               icon: "icon/com.apple.tv-large.png",               name: "TV" },
+    { app: "com.apple.podcasts",         icon: "icon/com.apple.podcasts-large.png",         name: "Подкасты" },
+
+    // --- Part 2: Additional ---
+    { app: "com.apple.iBooks",          icon: "icon/com.apple.iBooks-large.png",          name: "Книги" },
+    { app: "com.apple.freeform",        icon: "icon/com.apple.freeform-large.png",        name: "Freeform" },
+    { app: "com.apple.mobilegarageband","icon": "icon/com.apple.mobilegarageband-large.png","name": "GarageBand" },
+    { app: "com.apple.Home",            icon: "icon/com.apple.Home-large.png",            name: "Дом" },
+    { app: "com.apple.iMovie",          icon: "icon/com.apple.iMovie-large.png",          name: "iMovie" },
+    { app: "com.apple.MobileStore",     icon: "icon/com.apple.MobileStore-large.png",     name: "iTunes Store" },
+    { app: "com.apple.Keynote",         icon: "icon/com.apple.Keynote-large.png",         name: "Keynote" },
+    { app: "com.apple.Magnifier",       icon: "icon/com.apple.Magnifier-large.png",       name: "Лупа" },
+    { app: "com.apple.measure",         icon: "icon/com.apple.measure-large.png",         name: "Мера" },
+    { app: "com.apple.news",            icon: "icon/com.apple.news-large.png",            name: "Новости" },
+    { app: "com.apple.Numbers",         icon: "icon/com.apple.Numbers-large.png",         name: "Numbers" },
+    { app: "com.apple.Pages",           icon: "icon/com.apple.Pages-large.png",           name: "Pages" },
+    { app: "com.apple.stocks",          icon: "icon/com.apple.stocks-large.png",          name: "Акции" },
+    { app: "com.apple.tips",            icon: "icon/com.apple.tips-large.png",            name: "Советы" },
+    { app: "com.apple.Bridge",          icon: "icon/com.apple.Bridge-large.png",          name: "Watch" },
+    { app: "com.apple.gamecenter",      icon: "icon/com.apple.gamecenter-large.png",      name: "Game Center" },
+    { app: "com.apple.VoiceMemos",      icon: "icon/com.apple.VoiceMemos-large.png",      name: "Диктофон" },
+    { app: "com.apple.AirDrop",         icon: "icon/com.apple.AirDrop-large.png",         name: "AirDrop" },
+    { app: "com.apple.FinalCutApp",     icon: "icon/com.apple.FinalCutApp-large.png",     name: "Final Cut" },
+    { app: "com.apple.videos",          icon: "icon/com.apple.videos-large.png",          name: "Видео" },
+    { app: "com.apple.mobileme.fmip1",  icon: "icon/com.apple.mobileme.fmip1-large.png",  name: "Find My iPhone" }
+  ]
+};
+
+function buildThemeJson() {
+  return {
+    name: THEME.name,
+    description: THEME.description,
+    accent: THEME.accent,
+    wallpaper: abs(WALLPAPER),
+    icons: THEME.icons.map(ic => ({
+      app: ic.app,
+      icon: abs(ic.icon),
+      name: ic.name
+    }))
+  };
+}
+
+function applyUrl() {
+  const json = JSON.stringify(buildThemeJson());
+  return 'shortcuts://run-shortcut?name=ApplyTheme&input=' + encodeURIComponent(json);
+}
+
+function render() {
+  document.getElementById('applyBtn').href = applyUrl();
+
+  document.getElementById('content').innerHTML = `
+    <h2 class="theme-title">${THEME.name}</h2>
+    <p class="theme-desc">${THEME.description} · ${THEME.icons.length} иконок</p>
+    <div class="icons-grid">
+      ${THEME.icons.map(ic => `
+        <div class="cell">
+          <img src="${ic.icon}" alt="${ic.name}" loading="lazy"
+            onerror="this.style.opacity=.3" />
+          <div class="nm">${ic.name}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderWallpaper() {
+  document.getElementById('wallpaperBox').innerHTML = `
+    <div class="wallpaper-box">
+      <div class="wallpaper-preview">
+        <img src="${WALLPAPER}" alt="Обои Solar26"
+          onerror="this.style.display='none';this.parentElement.style.background='#23232a'" />
+      </div>
+      <div class="wallpaper-info">
+        <h3>🌌 Обои темы</h3>
+        <p>Сохрани в Фото → Настройки → Обои → Добавить новые → Фото.</p>
+      </div>
+    </div>
+  `;
+}
+
+render();
+renderWallpaper();
+</script>
+
+</body>
+</html>

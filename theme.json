@@ -1,0 +1,25 @@
+{
+  "name": "Solar26 · Full Theme",
+  "icons": [
+    { "app": "com.apple.mobilephone",     "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.mobilephone-large.png",     "name": "Телефон" },
+    { "app": "com.apple.MobileSMS",       "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.MobileSMS-large.png",       "name": "Сообщения" },
+    { "app": "com.apple.mobilesafari",    "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.mobilesafari-large.png",    "name": "Safari" },
+    { "app": "com.apple.mobilemail",      "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.mobilemail-large.png",      "name": "Почта" },
+    { "app": "com.apple.camera",          "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.camera-large.png",          "name": "Камера" },
+    { "app": "com.apple.mobileslideshow", "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.mobileslideshow-large.png", "name": "Фото" },
+    { "app": "com.apple.Music",           "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.Music-large.png",           "name": "Музыка" },
+    { "app": "com.apple.mobiletimer",     "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/clock.png",                           "name": "Часы" },
+    { "app": "com.apple.mobilecal",       "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.mobilecal-large.png",       "name": "Календарь" },
+    { "app": "com.apple.weather",         "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.weather-large.png",         "name": "Погода" },
+    { "app": "com.apple.Maps",            "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.Maps-large.png",            "name": "Карты" },
+    { "app": "com.apple.mobilenotes",     "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.mobilenotes-large.png",     "name": "Заметки" },
+    { "app": "com.apple.reminders",       "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.reminders-large.png",       "name": "Напоминания" },
+    { "app": "com.apple.Preferences",     "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.Preferences-large.png",     "name": "Настройки" },
+    { "app": "com.apple.AppStore",        "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.AppStore-large.png",        "name": "App Store" },
+    { "app": "com.apple.Passbook",        "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.Passbook-large.png",        "name": "Кошелёк" },
+    { "app": "com.apple.Health",          "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.Health-large.png",          "name": "Здоровье" },
+    { "app": "com.apple.Fitness",         "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.Fitness-large.png",         "name": "Фитнес" },
+    { "app": "com.apple.DocumentsApp",    "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.DocumentsApp-large.png",    "name": "Файлы" },
+    { "app": "com.apple.calculator",      "icon": "https://zzzzzzzzzzzz-del.github.io/PosterIcon/com.apple.calculator-large.png",      "name": "Калькулятор" }
+  ]
+}
